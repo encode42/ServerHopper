@@ -1,0 +1,42 @@
+package dev.encode42.serverhopper.connection;
+
+import com.velocitypowered.api.proxy.ConnectionRequestBuilder;
+import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.ServerConnection;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+
+import java.util.Optional;
+
+public class ConnectionManager {
+	public static ConnectionResult connect(Player player, RegisteredServer server) {
+		ServerConnection sourceServerConnection = ConnectionManager.getConnection(player);
+		RegisteredServer sourceServer = sourceServerConnection.getServer();
+
+		if (sourceServer.equals(server)) {
+			return ConnectionResult.ALREADY_CONNECTED;
+		}
+
+		ConnectionRequestBuilder connectionRequestBuilder = player.createConnectionRequest(server);
+		connectionRequestBuilder.connectWithIndication();
+
+		return ConnectionResult.SUCCESS;
+	}
+
+	public static ConnectionResult connect(Player sourcePlayer, Player destinationPlayer) {
+		ServerConnection destinationServerConnection = ConnectionManager.getConnection(destinationPlayer);
+
+		if (destinationServerConnection == null) {
+			return ConnectionResult.FAILURE;
+		}
+
+		RegisteredServer destinationServer = destinationServerConnection.getServer();
+
+		return ConnectionManager.connect(sourcePlayer, destinationServer);
+	}
+
+	public static ServerConnection getConnection(Player player) {
+		Optional<ServerConnection> optionalServerConnection = player.getCurrentServer();
+
+		return optionalServerConnection.orElse(null);
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"id": "serverhopper",
+	"name": "${name}",
+	"description": "Dialog to help players hop between servers.",
+	"authors": [
+		"encode42"
+	],
+	"version": "${version}",
+	"main": "dev.encode42.serverhopper.ServerHopper",
+	"dependencies": [
+		{
+			"id": "packetevents"
+		}
+	]
+}
