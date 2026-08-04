@@ -13,6 +13,7 @@ import dev.encode42.serverhopper.config.ConfigManager;
 import dev.encode42.serverhopper.config.ConfigRoot;
 import dev.encode42.serverhopper.config.messages.MessagesRoot;
 import dev.encode42.serverhopper.connection.PingCache;
+import dev.encode42.serverhopper.integrations.QueueIntegration;
 import dev.encode42.serverhopper.listeners.ListenerManager;
 import io.github.retrooper.packetevents.velocity.factory.VelocityPacketEventsBuilder;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class ServerHopper {
 	private PacketEventsAPI<?> packetEvents;
 	private MessagesRoot messages = new MessagesRoot();
 	private ConfigRoot config = new ConfigRoot();
+
+	private QueueIntegration queueIntegration;
 
 	@Inject
 	public ServerHopper(ProxyServer proxy, PluginContainer container, @DataDirectory Path configDirectory, Logger logger) {
@@ -67,6 +70,10 @@ public class ServerHopper {
 		return instance.config;
 	}
 
+	public static QueueIntegration queue() {
+		return instance.queueIntegration;
+	}
+
 	@Subscribe
 	public void onProxyInitialization(ProxyInitializeEvent event) {
 		PacketEvents.setAPI(
@@ -88,6 +95,8 @@ public class ServerHopper {
 
 		this.messages = messagesConfigManager.load();
 		this.config = rootConfigManager.load();
+
+		this.queueIntegration = new QueueIntegration();
 
 		PingCache.init();
 

@@ -5,7 +5,8 @@ import java.util.Set;
 public class ListenerManager {
 	private static final Set<ExecutableListener> LISTENERS = Set.of(
 		new PlayerConnectionListener(),
-		new ProxyRegistryListener()
+		new ProxyRegistryListener(),
+		new ServerPausedListener()
 	);
 
 	public static void registerAll() {

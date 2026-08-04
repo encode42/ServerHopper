@@ -47,7 +47,10 @@ public class PingCache {
 	}
 
 	public static void refresh(RegisteredServer server) {
-		if (ServerHopper.config().isIgnored(server)) {
+		if (
+			ServerHopper.config().isIgnored(server)
+				|| ServerHopper.queue().isPaused(server)
+		) {
 			return;
 		}
 
