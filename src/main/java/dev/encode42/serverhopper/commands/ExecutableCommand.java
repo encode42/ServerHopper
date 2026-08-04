@@ -6,9 +6,9 @@ import com.velocitypowered.api.command.CommandMeta;
 import dev.encode42.serverhopper.ServerHopper;
 
 public abstract class ExecutableCommand extends Executable {
-	private static final CommandManager commandManager = ServerHopper.proxy().getCommandManager();
-
 	protected final String commandName;
+
+	private final CommandManager commandManager = ServerHopper.proxy().getCommandManager();
 
 	public ExecutableCommand(String commandName) {
 		this.commandName = commandName;
@@ -17,7 +17,7 @@ public abstract class ExecutableCommand extends Executable {
 	protected abstract BrigadierCommand createCommand();
 
 	private CommandMeta createMeta() {
-		return commandManager.metaBuilder(this.commandName)
+		return this.commandManager.metaBuilder(this.commandName)
 			.plugin(ServerHopper.instance())
 			.build();
 	}
@@ -26,6 +26,6 @@ public abstract class ExecutableCommand extends Executable {
 		BrigadierCommand command = this.createCommand();
 		CommandMeta meta = this.createMeta();
 
-		commandManager.register(meta, command);
+		this.commandManager.register(meta, command);
 	}
 }
