@@ -5,7 +5,7 @@ import com.velocitypowered.api.event.proxy.server.ServerRegisteredEvent;
 import com.velocitypowered.api.event.proxy.server.ServerUnregisteredEvent;
 import dev.encode42.serverhopper.connection.PingCache;
 
-public class ProxyRegistryListener {
+public class ProxyRegistryListener extends ExecutableListener {
 	@Subscribe
 	public void onServerRegistered(ServerRegisteredEvent event) {
 		PingCache.refresh(event.registeredServer());

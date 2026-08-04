@@ -13,7 +13,7 @@ import dev.encode42.serverhopper.config.ConfigManager;
 import dev.encode42.serverhopper.config.ConfigRoot;
 import dev.encode42.serverhopper.config.messages.MessagesRoot;
 import dev.encode42.serverhopper.connection.PingCache;
-import dev.encode42.serverhopper.listeners.PlayerConnectionListener;
+import dev.encode42.serverhopper.listeners.ListenerManager;
 import io.github.retrooper.packetevents.velocity.factory.VelocityPacketEventsBuilder;
 import org.slf4j.Logger;
 
@@ -92,7 +92,6 @@ public class ServerHopper {
 		PingCache.init();
 
 		CommandsManager.registerAll();
-
-		this.proxy.getEventManager().register(instance, new PlayerConnectionListener());
+		ListenerManager.registerAll();
 	}
 }

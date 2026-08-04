@@ -10,7 +10,7 @@ import dev.encode42.serverhopper.connection.PingCache;
 import java.time.Duration;
 import java.util.Optional;
 
-public class PlayerConnectionListener {
+public class PlayerConnectionListener extends ExecutableListener {
 	@Subscribe
 	public void onPlayerConnect(ServerConnectedEvent event) {
 		PingCache.refresh(event.getServer());
