@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PingCache {
 	private static final Duration REFRESH_INTERVAL = Duration.ofSeconds(30);
-	private static final OfflinePingInfo OFFLINE_SERVER = new OfflinePingInfo("unknown");
 
 	private static final PingOptions PING_OPTIONS = PingOptions.builder()
 		.timeout(Duration.ofSeconds(5))
@@ -35,7 +34,15 @@ public class PingCache {
 	}
 
 	public static PingInfo get(RegisteredServer server) {
-		return PingCache.cache.getOrDefault(server, PingCache.OFFLINE_SERVER);
+		PingInfo pingInfo = PingCache.cache.get(server);
+
+		if (pingInfo == null) {
+			String serverName = server.getServerInfo().getName();
+
+			return new OfflinePingInfo(serverName, false);
+		}
+
+		return pingInfo;
 	}
 
 	public static Collection<PingInfo> getAll() {
