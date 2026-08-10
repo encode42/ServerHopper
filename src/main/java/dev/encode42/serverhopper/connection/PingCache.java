@@ -59,12 +59,12 @@ public class PingCache {
 				.handle(((serverPing, throwable) -> {
 					Optional<ServerPing.Players> optionalPlayers = serverPing.getPlayers();
 
-					if (throwable != null || optionalPlayers.isEmpty()) {
+					if (optionalPlayers.isEmpty()) {
 						PingCache.cache.put(server, new OfflinePingInfo(
 							server.getServerInfo().getName()
 						));
 
-						return null;
+						return serverPing;
 					}
 
 					ServerPing.Players players = optionalPlayers.get();
@@ -77,6 +77,13 @@ public class PingCache {
 
 					return serverPing;
 				}))
+				.exceptionally((throwable) -> {
+					PingCache.cache.put(server, new OfflinePingInfo(
+						server.getServerInfo().getName()
+					));
+
+					return null;
+				})
 				.whenComplete(((unused1, unused2) ->
 					PingCache.pings.remove(serverKey))
 				)
