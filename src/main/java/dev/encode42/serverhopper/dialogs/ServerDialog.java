@@ -110,7 +110,11 @@ public class ServerDialog {
 		for (PingInfo pingInfo : PingCache.getAll()) {
 			ActionButton button = createButton(pingInfo);
 
-			buttons.add(button);
+			if (pingInfo.isSpecial()) {
+				buttons.addFirst(button);
+			} else {
+				buttons.add(button);
+			}
 		}
 
 		return buttons;

@@ -6,9 +6,16 @@ public class PingInfo {
 	private final boolean isOnline;
 	private final String name;
 
-	public PingInfo(boolean isOnline, String name) {
+	private final boolean isSpecial;
+
+	public PingInfo(
+		boolean isOnline,
+		String name,
+		boolean isSpecial
+	) {
 		this.isOnline = isOnline;
 		this.name = name;
+		this.isSpecial = isSpecial;
 	}
 
 	public boolean isOnline() {
@@ -21,5 +28,9 @@ public class PingInfo {
 
 	public long getUpdated() {
 		return this.updated;
+	}
+
+	public boolean isSpecial() {
+		return this.isSpecial;
 	}
 }

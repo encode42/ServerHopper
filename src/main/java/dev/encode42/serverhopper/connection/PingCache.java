@@ -54,6 +54,8 @@ public class PingCache {
 			return;
 		}
 
+		boolean isSpecial = ServerHopper.config().isSpecial(server);
+
 		PingCache.pings.computeIfAbsent(server, serverKey ->
 			server.ping(PingCache.PING_OPTIONS)
 				.handle(((serverPing, throwable) -> {
@@ -61,7 +63,8 @@ public class PingCache {
 
 					if (optionalPlayers.isEmpty()) {
 						PingCache.cache.put(server, new OfflinePingInfo(
-							server.getServerInfo().getName()
+							server.getServerInfo().getName(),
+							isSpecial
 						));
 
 						return serverPing;
@@ -72,14 +75,16 @@ public class PingCache {
 					PingCache.cache.put(server, new OnlinePingInfo(
 						server.getServerInfo().getName(),
 						players.getMax(),
-						players.getOnline()
+						players.getOnline(),
+						isSpecial
 					));
 
 					return serverPing;
 				}))
 				.exceptionally((throwable) -> {
 					PingCache.cache.put(server, new OfflinePingInfo(
-						server.getServerInfo().getName()
+						server.getServerInfo().getName(),
+						isSpecial
 					));
 
 					return null;
