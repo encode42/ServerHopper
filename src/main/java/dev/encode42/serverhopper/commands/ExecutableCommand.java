@@ -14,7 +14,7 @@ public abstract class ExecutableCommand extends Executable {
 		this.commandName = commandName;
 	}
 
-	protected abstract BrigadierCommand createCommand();
+	public abstract BrigadierCommand createCommand();
 
 	private CommandMeta createMeta() {
 		return this.commandManager.metaBuilder(this.commandName)
