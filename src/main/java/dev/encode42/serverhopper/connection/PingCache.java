@@ -3,7 +3,9 @@ package dev.encode42.serverhopper.connection;
 import com.velocitypowered.api.proxy.server.PingOptions;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerPing;
+import com.velocitypowered.api.scheduler.ScheduledTask;
 import dev.encode42.serverhopper.ServerHopper;
+import dev.encode42.serverhopper.config.ConfigManager;
 
 import java.time.Duration;
 import java.util.Collection;
@@ -22,15 +24,30 @@ public class PingCache {
 	private static final Map<RegisteredServer, PingInfo> cache = new ConcurrentHashMap<>();
 	private static final Map<RegisteredServer, CompletableFuture<ServerPing>> pings = new ConcurrentHashMap<>();
 
+	private static ScheduledTask scheduledTask;
+
 	public static void init() {
+		PingCache.load();
+	}
+
+	public static void load() {
 		PingCache.refreshAll();
 
-		ServerHopper.proxy()
+		PingCache.scheduledTask = ServerHopper.proxy()
 			.getScheduler()
 			.buildTask(ServerHopper.instance(), PingCache::checkStale)
 			.delay(PingCache.REFRESH_INTERVAL)
 			.repeat(PingCache.REFRESH_INTERVAL)
 			.schedule();
+	}
+
+	public static void reload() {
+		if (PingCache.scheduledTask != null) {
+			PingCache.scheduledTask.cancel();
+		}
+
+		PingCache.clear();
+		PingCache.load();
 	}
 
 	public static PingInfo get(RegisteredServer server) {
@@ -53,15 +70,20 @@ public class PingCache {
 		PingCache.cache.remove(server);
 	}
 
+	public static void clear() {
+		PingCache.pings.clear();
+		PingCache.cache.clear();
+	}
+
 	public static void refresh(RegisteredServer server) {
 		if (
-			ServerHopper.config().isIgnored(server)
+			ConfigManager.root().isIgnored(server)
 				|| ServerHopper.queue().isPaused(server)
 		) {
 			return;
 		}
 
-		boolean isSpecial = ServerHopper.config().isSpecial(server);
+		boolean isSpecial = ConfigManager.root().isSpecial(server);
 
 		PingCache.pings.computeIfAbsent(server, serverKey ->
 			server.ping(PingCache.PING_OPTIONS)

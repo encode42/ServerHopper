@@ -15,7 +15,7 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
-import dev.encode42.serverhopper.ServerHopper;
+import dev.encode42.serverhopper.config.ConfigManager;
 import dev.encode42.serverhopper.connection.*;
 import net.kyori.adventure.text.Component;
 
@@ -46,12 +46,12 @@ public class ServerDialog {
 			this.serverName = serverInfo.getName();
 		}
 
-		this.connectedTooltip = ServerHopper.messages()
+		this.connectedTooltip = ConfigManager.messages()
 			.dialog()
 			.getConnectedTooltip()
 			.parse(this.serverName);
 
-		this.offlineTooltip = ServerHopper.messages()
+		this.offlineTooltip = ConfigManager.messages()
 			.dialog()
 			.getOfflineTooltip()
 			.parse(this.serverName);
@@ -61,7 +61,7 @@ public class ServerDialog {
 	}
 
 	public Dialog create() {
-		Component dialogTitle = ServerHopper.messages()
+		Component dialogTitle = ConfigManager.messages()
 			.dialog()
 			.getTitle()
 			.parse(this.serverName);
@@ -91,7 +91,7 @@ public class ServerDialog {
 	}
 
 	private DialogBody createBody() {
-		Component dialogBody = ServerHopper.messages()
+		Component dialogBody = ConfigManager.messages()
 			.dialog()
 			.getBody()
 			.parse(this.serverName);
@@ -133,7 +133,7 @@ public class ServerDialog {
 
 		boolean isConnected = pingName.equals(this.serverName);
 
-		Component onlineStatus = ServerHopper.messages()
+		Component onlineStatus = ConfigManager.messages()
 			.dialog()
 			.getOnline()
 			.parse(
@@ -141,7 +141,7 @@ public class ServerDialog {
 				pingInfo.getMaxPlayers()
 			);
 
-		Component buttonLabel = ServerHopper.messages()
+		Component buttonLabel = ConfigManager.messages()
 			.dialog()
 			.getButton()
 			.parse(pingName, onlineStatus);
@@ -165,12 +165,12 @@ public class ServerDialog {
 	private ActionButton createOfflineButton(OfflinePingInfo pingInfo) {
 		String pingName = pingInfo.getName();
 
-		Component offlineStatus = ServerHopper.messages()
+		Component offlineStatus = ConfigManager.messages()
 			.dialog()
 			.getOffline()
 			.parse();
 
-		Component buttonLabel = ServerHopper.messages()
+		Component buttonLabel = ConfigManager.messages()
 			.dialog()
 			.getButton()
 			.parse(pingName, offlineStatus);

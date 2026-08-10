@@ -1,81 +1,50 @@
 package dev.encode42.serverhopper.config;
 
-import dev.encode42.serverhopper.ServerHopper;
-import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.ConfigurationNode;
-import org.spongepowered.configurate.gson.GsonConfigurationLoader;
-import org.spongepowered.configurate.serialize.SerializationException;
+import dev.encode42.serverhopper.config.messages.MessagesRoot;
+import dev.encode42.serverhopper.connection.PingCache;
+import org.slf4j.Logger;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class ConfigManager<T extends ConfigNode> {
-	private static final Path CONFIG_DIRECTORY = ServerHopper.configDirectory();
+public class ConfigManager {
+	private static Logger logger;
 
-	private final GsonConfigurationLoader configurationLoader;
-	private final Class<T> configClass;
+	private static ConfigLoader<MessagesRoot> messagesConfigManager;
+	private static ConfigLoader<ConfigRoot> rootConfigManager;
 
-	private T configInstance;
+	public static void init(Logger logger, Path configDirectory) {
+		ConfigManager.logger = logger;
 
-	public ConfigManager(String configName, Class<T> configClass) {
-		Path configPath = ConfigManager.CONFIG_DIRECTORY.resolve(configName);
+		ConfigManager.messagesConfigManager = new ConfigLoader<>(configDirectory, "messages.json", MessagesRoot.class);
+		ConfigManager.rootConfigManager = new ConfigLoader<>(configDirectory, "config.json", ConfigRoot.class);
 
-		this.configClass = configClass;
-
-		this.configurationLoader = GsonConfigurationLoader.builder()
-			.path(configPath)
-			.indent(4)
-			.build();
+		ConfigManager.load();
 	}
 
-	public static void ensureDirectory() {
-		try {
-			Files.createDirectories(ConfigManager.CONFIG_DIRECTORY);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public static MessagesRoot messages() {
+		return messagesConfigManager.getInstance();
 	}
 
-	public T load() {
-		ConfigManager.ensureDirectory();
-
-		ConfigurationNode configurationNode;
-
-		try {
-			configurationNode = this.configurationLoader.load();
-		} catch (ConfigurateException exception) {
-			throw new RuntimeException(exception);
-		}
-
-		try {
-			this.configInstance = configurationNode.get(this.configClass);
-		} catch (SerializationException exception) {
-			throw new RuntimeException(exception);
-		}
-
-		this.save();
-
-		return this.configInstance;
+	public static ConfigRoot root() {
+		return rootConfigManager.getInstance();
 	}
 
-	public T getInstance() {
-		return this.configInstance;
+	public static void load() throws RuntimeException {
+		messagesConfigManager.load();
+		rootConfigManager.load();
 	}
 
-	public void save() {
-		ConfigurationNode configurationNode = configurationLoader.createNode();
-
+	public static boolean reload() {
 		try {
-			configurationNode.set(this.configClass, this.configInstance);
-		} catch (SerializationException exception) {
-			throw new RuntimeException(exception);
+			ConfigManager.load();
+
+			PingCache.reload();
+		} catch (RuntimeException exception) {
+			logger.error("Unable to load reload configuration files", exception);
+
+			return false;
 		}
 
-		try {
-			configurationLoader.save(configurationNode);
-		} catch (ConfigurateException e) {
-			throw new RuntimeException(e);
-		}
+		return true;
 	}
 }

@@ -9,7 +9,14 @@ public class MessagesRoot extends ConfigNode {
 	private MessagesArguments arguments = new MessagesArguments();
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
+	private MessagesMeta meta = new MessagesMeta();
+
+	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 	private MessagesDialog dialog = new MessagesDialog();
+
+	public MessagesMeta meta() {
+		return this.meta;
+	}
 
 	public MessagesArguments arguments() {
 		return this.arguments;

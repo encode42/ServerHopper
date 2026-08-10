@@ -10,8 +10,6 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import dev.encode42.serverhopper.commands.CommandsManager;
 import dev.encode42.serverhopper.config.ConfigManager;
-import dev.encode42.serverhopper.config.ConfigRoot;
-import dev.encode42.serverhopper.config.messages.MessagesRoot;
 import dev.encode42.serverhopper.connection.PingCache;
 import dev.encode42.serverhopper.integrations.QueueIntegration;
 import dev.encode42.serverhopper.listeners.ListenerManager;
@@ -31,8 +29,6 @@ public class ServerHopper {
 	private final Logger logger;
 
 	private PacketEventsAPI<?> packetEvents;
-	private MessagesRoot messages = new MessagesRoot();
-	private ConfigRoot config = new ConfigRoot();
 
 	private QueueIntegration queueIntegration;
 
@@ -54,20 +50,8 @@ public class ServerHopper {
 		return instance.proxy;
 	}
 
-	public static Path configDirectory() {
-		return instance.configDirectory;
-	}
-
 	public static PacketEventsAPI<?> packetEvents() {
 		return instance.packetEvents;
-	}
-
-	public static MessagesRoot messages() {
-		return instance.messages;
-	}
-
-	public static ConfigRoot config() {
-		return instance.config;
 	}
 
 	public static QueueIntegration queue() {
@@ -90,11 +74,10 @@ public class ServerHopper {
 		this.packetEvents.load();
 		this.packetEvents.init();
 
-		ConfigManager<MessagesRoot> messagesConfigManager = new ConfigManager<>("messages.json", MessagesRoot.class);
-		ConfigManager<ConfigRoot> rootConfigManager = new ConfigManager<>("config.json", ConfigRoot.class);
-
-		this.messages = messagesConfigManager.load();
-		this.config = rootConfigManager.load();
+		ConfigManager.init(
+			this.logger,
+			this.configDirectory
+		);
 
 		this.queueIntegration = new QueueIntegration();
 
