@@ -24,8 +24,6 @@ import java.util.List;
 
 public class ServerDialog {
 	private final String serverName;
-	private final Component connectedTooltip;
-	private final Component offlineTooltip;
 
 	private final int buttonWidth;
 	private final int totalColumns;
@@ -45,16 +43,6 @@ public class ServerDialog {
 
 			this.serverName = serverInfo.getName();
 		}
-
-		this.connectedTooltip = ConfigManager.messages()
-			.dialog()
-			.getConnectedTooltip()
-			.parse(this.serverName);
-
-		this.offlineTooltip = ConfigManager.messages()
-			.dialog()
-			.getOfflineTooltip()
-			.parse(this.serverName);
 
 		this.buttonWidth = buttonWidth;
 		this.totalColumns = totalColumns;
@@ -141,16 +129,20 @@ public class ServerDialog {
 				pingInfo.getMaxPlayers()
 			);
 
-		Component buttonLabel = ConfigManager.messages()
-			.dialog()
-			.getButton()
-			.parse(pingName, onlineStatus);
+		Component connectedTooltip = null;
+
+		if (isConnected) {
+			connectedTooltip = ConfigManager.messages()
+				.dialog()
+				.getConnectedTooltip()
+				.parse(this.serverName);
+		}
 
 		Component buttonLabel = this.parseButtonLabel(pingName, onlineStatus, pingInfo.isSpecial());
 
 		CommonButtonData buttonData = new CommonButtonData(
 			buttonLabel,
-			isConnected ? this.connectedTooltip : null,
+			connectedTooltip,
 			this.buttonWidth
 		);
 
@@ -172,16 +164,16 @@ public class ServerDialog {
 			.getOffline()
 			.parse();
 
-		Component buttonLabel = ConfigManager.messages()
+		Component offlineTooltip = ConfigManager.messages()
 			.dialog()
-			.getButton()
-			.parse(pingName, offlineStatus);
+			.getOfflineTooltip()
+			.parse(this.serverName);
 
 		Component buttonLabel = this.parseButtonLabel(pingName, offlineStatus, pingInfo.isSpecial());
 
 		CommonButtonData buttonData = new CommonButtonData(
 			buttonLabel,
-			this.offlineTooltip,
+			offlineTooltip,
 			this.buttonWidth
 		);
 
