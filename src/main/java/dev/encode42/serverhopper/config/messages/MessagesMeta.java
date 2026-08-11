@@ -1,12 +1,11 @@
 package dev.encode42.serverhopper.config.messages;
 
-import dev.encode42.serverhopper.config.ConfigNode;
 import dev.encode42.serverhopper.messages.meta.FailedReloadMessage;
 import dev.encode42.serverhopper.messages.meta.SuccessfulReloadMessage;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
-public class MessagesMeta extends ConfigNode {
+public class MessagesMeta {
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 	private String successfulReload = SuccessfulReloadMessage.DEFAULT_VALUE;
 
