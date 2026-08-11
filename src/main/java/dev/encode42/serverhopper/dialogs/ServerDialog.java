@@ -95,14 +95,64 @@ public class ServerDialog {
 	private List<ActionButton> createButtons() {
 		List<ActionButton> buttons = new ArrayList<>();
 
-		for (PingInfo pingInfo : PingCache.getAll()) {
-			ActionButton button = createButton(pingInfo);
+		boolean willSortSpecial = ConfigManager.root().willSortSpecial();
+		boolean willSortOffline = ConfigManager.root().willSortOffline();
 
-			if (pingInfo.isSpecial()) {
-				buttons.addFirst(button);
-			} else {
-				buttons.add(button);
+		if (!willSortSpecial && !willSortOffline) {
+			buttons.addAll(this.createAllButtons(OnlineStatus.ANY, SpecialStatus.ANY));
+		} else {
+			if (willSortSpecial) {
+				buttons.addAll(this.createAllButtons(OnlineStatus.ANY, SpecialStatus.REQUIRED));
 			}
+
+			SpecialStatus specialStatus = willSortSpecial ? SpecialStatus.SKIP : SpecialStatus.ANY;
+
+			if (willSortOffline) {
+				buttons.addAll(this.createAllButtons(OnlineStatus.ONLINE, specialStatus));
+				buttons.addAll(this.createAllButtons(OnlineStatus.OFFLINE, specialStatus));
+			} else {
+				buttons.addAll(this.createAllButtons(OnlineStatus.ANY, specialStatus));
+			}
+		}
+
+		return buttons;
+	}
+
+	private List<ActionButton> createAllButtons(OnlineStatus onlineStatus, SpecialStatus specialStatus) {
+		List<ActionButton> buttons = new ArrayList<>();
+
+		for (PingInfo pingInfo : PingCache.getAll()) {
+			switch (onlineStatus) {
+				case ONLINE -> {
+					if (!pingInfo.isOnline()) {
+						continue;
+					}
+				}
+
+				case OFFLINE -> {
+					if (pingInfo.isOnline()) {
+						continue;
+					}
+				}
+			}
+
+			switch (specialStatus) {
+				case REQUIRED -> {
+					if (!pingInfo.isSpecial()) {
+						continue;
+					}
+				}
+
+				case SKIP -> {
+					if (pingInfo.isSpecial()) {
+						continue;
+					}
+				}
+			}
+
+			ActionButton button = this.createButton(pingInfo);
+
+			buttons.add(button);
 		}
 
 		return buttons;

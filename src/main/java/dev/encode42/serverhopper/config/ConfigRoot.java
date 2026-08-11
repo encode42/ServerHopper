@@ -14,12 +14,26 @@ public class ConfigRoot extends ConfigNode {
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 	private List<String> specialServers = new ArrayList<>();
 
+	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
+	private boolean willSortSpecial = true;
+
+	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
+	private boolean willSortOffline = false;
+
 	public List<String> getIgnoredServers() {
 		return this.ignoredServers;
 	}
 
 	public List<String> getSpecialServers() {
 		return specialServers;
+	}
+
+	public boolean willSortSpecial() {
+		return this.willSortSpecial;
+	}
+
+	public boolean willSortOffline() {
+		return this.willSortOffline;
 	}
 
 	public boolean isIgnored(RegisteredServer server) {
