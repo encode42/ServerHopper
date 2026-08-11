@@ -4,10 +4,10 @@ import dev.encode42.serverhopper.messages.Message;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class OnlineMessage extends Message {
-	public static final String DEFAULT_VALUE = "<connected_players>/<max_players>";
+public class OnlineComponent extends Message {
+	public static final String DEFAULT_VALUE = " <gray><connected_players>/<max_players></gray>";
 
-	public OnlineMessage(String message) {
+	public OnlineComponent(String message) {
 		super(message);
 	}
 

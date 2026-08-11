@@ -15,16 +15,19 @@ public class MessagesDialog {
 	private String button = ButtonMessage.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String offline = OfflineMessage.DEFAULT_VALUE;
+	private String offline = OfflineComponent.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String online = OnlineMessage.DEFAULT_VALUE;
+	private String online = OnlineComponent.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String connectedTooltip = ConnectedTooltipMessage.DEFAULT_VALUE;
+	private String special = SpecialComponent.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String offlineTooltip = OfflineTooltipMessage.DEFAULT_VALUE;
+	private String connectedTooltip = ConnectedTooltip.DEFAULT_VALUE;
+
+	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
+	private String offlineTooltip = OfflineTooltip.DEFAULT_VALUE;
 
 	public TitleMessage getTitle() {
 		return new TitleMessage(this.title);
@@ -38,19 +41,23 @@ public class MessagesDialog {
 		return new ButtonMessage(this.button);
 	}
 
-	public OfflineMessage getOffline() {
-		return new OfflineMessage(this.offline);
+	public OfflineComponent getOffline() {
+		return new OfflineComponent(this.offline);
 	}
 
-	public OnlineMessage getOnline() {
-		return new OnlineMessage(this.online);
+	public OnlineComponent getOnline() {
+		return new OnlineComponent(this.online);
 	}
 
-	public ConnectedTooltipMessage getConnectedTooltip() {
-		return new ConnectedTooltipMessage(this.connectedTooltip);
+	public SpecialComponent getSpecial() {
+		return new SpecialComponent(this.special);
 	}
 
-	public OfflineTooltipMessage getOfflineTooltip() {
-		return new OfflineTooltipMessage(this.offlineTooltip);
+	public ConnectedTooltip getConnectedTooltip() {
+		return new ConnectedTooltip(this.connectedTooltip);
+	}
+
+	public OfflineTooltip getOfflineTooltip() {
+		return new OfflineTooltip(this.offlineTooltip);
 	}
 }

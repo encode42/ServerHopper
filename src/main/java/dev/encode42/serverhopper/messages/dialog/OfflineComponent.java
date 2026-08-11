@@ -3,10 +3,10 @@ package dev.encode42.serverhopper.messages.dialog;
 import dev.encode42.serverhopper.messages.Message;
 import net.kyori.adventure.text.Component;
 
-public class OfflineMessage extends Message {
-	public static final String DEFAULT_VALUE = "<red>Offline";
+public class OfflineComponent extends Message {
+	public static final String DEFAULT_VALUE = " <red>Offline</red>";
 
-	public OfflineMessage(String message) {
+	public OfflineComponent(String message) {
 		super(message);
 	}
 

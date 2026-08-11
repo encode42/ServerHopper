@@ -146,6 +146,8 @@ public class ServerDialog {
 			.getButton()
 			.parse(pingName, onlineStatus);
 
+		Component buttonLabel = this.parseButtonLabel(pingName, onlineStatus, pingInfo.isSpecial());
+
 		CommonButtonData buttonData = new CommonButtonData(
 			buttonLabel,
 			isConnected ? this.connectedTooltip : null,
@@ -175,6 +177,8 @@ public class ServerDialog {
 			.getButton()
 			.parse(pingName, offlineStatus);
 
+		Component buttonLabel = this.parseButtonLabel(pingName, offlineStatus, pingInfo.isSpecial());
+
 		CommonButtonData buttonData = new CommonButtonData(
 			buttonLabel,
 			this.offlineTooltip,
@@ -182,5 +186,21 @@ public class ServerDialog {
 		);
 
 		return new ActionButton(buttonData, null);
+	}
+
+	private Component parseButtonLabel(String pingName, Component offlineStatus, boolean isSpecial) {
+		Component special = Component.empty();
+
+		if (isSpecial) {
+			special = ConfigManager.messages()
+				.dialog()
+				.getSpecial()
+				.parse();
+		}
+
+		return ConfigManager.messages()
+			.dialog()
+			.getButton()
+			.parse(pingName, offlineStatus, special);
 	}
 }
