@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.packets;
+package dev.encode42.serverhopper.connection;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.chat.clickevent.CustomClickEvent;

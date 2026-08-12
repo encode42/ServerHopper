@@ -4,14 +4,9 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
-import dev.encode42.serverhopper.connection.ConnectionManager;
-import dev.encode42.serverhopper.connection.ConnectionStatus;
+import dev.encode42.serverhopper.connection.*;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.listeners.PacketEventListener;
-import dev.encode42.serverhopper.packets.ServerHelper;
-import dev.encode42.serverhopper.packets.ServerResult;
-import dev.encode42.serverhopper.packets.ServerResultInvalid;
-import dev.encode42.serverhopper.packets.ServerResultValid;
 import org.jspecify.annotations.NonNull;
 
 public class ServerHopListener extends PacketEventListener {

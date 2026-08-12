@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.packets;
+package dev.encode42.serverhopper.connection;
 
 public enum ServerStatus {
 	NO_PERMISSION,

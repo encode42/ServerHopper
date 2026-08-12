@@ -1,8 +1,8 @@
 package dev.encode42.serverhopper.data;
 
+import dev.encode42.serverhopper.connection.PingCache;
 import dev.encode42.serverhopper.data.config.ConfigRoot;
 import dev.encode42.serverhopper.data.messages.MessagesRoot;
-import dev.encode42.serverhopper.ping.PingCache;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;

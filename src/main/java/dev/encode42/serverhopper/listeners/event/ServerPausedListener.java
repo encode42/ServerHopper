@@ -2,8 +2,8 @@ package dev.encode42.serverhopper.listeners.event;
 
 import com.velocitypowered.api.event.Subscribe;
 import dev.encode42.serverhopper.ServerHopper;
+import dev.encode42.serverhopper.connection.PingCache;
 import dev.encode42.serverhopper.listeners.ProxyEventListener;
-import dev.encode42.serverhopper.ping.PingCache;
 import org.projectpersistence.queue.events.ServerPausedEvent;
 import org.projectpersistence.queue.events.ServerResumedEvent;
 

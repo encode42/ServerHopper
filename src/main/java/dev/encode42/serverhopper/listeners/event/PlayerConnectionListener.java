@@ -6,8 +6,8 @@ import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.encode42.serverhopper.ServerHopper;
+import dev.encode42.serverhopper.connection.PingCache;
 import dev.encode42.serverhopper.listeners.ProxyEventListener;
-import dev.encode42.serverhopper.ping.PingCache;
 
 import java.time.Duration;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.ping;
+package dev.encode42.serverhopper.connection;
 
 public class OnlinePingInfo extends PingInfo {
 	private final int maxPlayers;

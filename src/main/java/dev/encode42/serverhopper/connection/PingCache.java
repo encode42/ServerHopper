@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.ping;
+package dev.encode42.serverhopper.connection;
 
 import com.velocitypowered.api.proxy.server.PingOptions;
 import com.velocitypowered.api.proxy.server.RegisteredServer;

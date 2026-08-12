@@ -15,14 +15,9 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
-import dev.encode42.serverhopper.connection.ConnectionManager;
+import dev.encode42.serverhopper.connection.*;
 import dev.encode42.serverhopper.data.ConfigManager;
-import dev.encode42.serverhopper.packets.ServerHelper;
 import dev.encode42.serverhopper.permissions.ServerPermission;
-import dev.encode42.serverhopper.ping.OfflinePingInfo;
-import dev.encode42.serverhopper.ping.OnlinePingInfo;
-import dev.encode42.serverhopper.ping.PingCache;
-import dev.encode42.serverhopper.ping.PingInfo;
 import net.kyori.adventure.text.Component;
 
 import java.util.ArrayList;
