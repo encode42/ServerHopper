@@ -15,6 +15,8 @@ import dev.encode42.serverhopper.connection.ConnectionManager;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.permissions.ServerPermission;
 
+import java.util.UUID;
+
 public class InvitePlayerArgument extends ExecutableArgument<String> {
 	public RequiredArgumentBuilder<CommandSource, String> createArgument() {
 		RequiredArgumentBuilder<CommandSource, String> argumentBuilder = PlayerArgument.create();
@@ -27,6 +29,16 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 	public int execute(CommandContext<CommandSource> commandContext) throws CommandSyntaxException {
 		Player executingPlayer = this.getPlayer(commandContext);
 		Player targetPlayer = PlayerArgument.parse(commandContext);
+
+		UUID executingPlayerUniqueId = executingPlayer.getUniqueId();
+		UUID targetPlayerUniqueID = targetPlayer.getUniqueId();
+
+		if (executingPlayerUniqueId.equals(targetPlayerUniqueID)) {
+			throw ConfigManager.messages()
+				.invites()
+				.getInvalidSelf()
+				.error();
+		}
 
 		String executingPlayerName = executingPlayer.getUsername();
 		String targetPlayerName = targetPlayer.getUsername();
