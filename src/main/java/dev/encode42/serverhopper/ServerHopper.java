@@ -8,11 +8,11 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import dev.encode42.serverhopper.commands.CommandsManager;
-import dev.encode42.serverhopper.config.ConfigManager;
-import dev.encode42.serverhopper.connection.PingCache;
+import dev.encode42.serverhopper.commands.CommandManager;
+import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.integrations.QueueIntegration;
 import dev.encode42.serverhopper.listeners.ListenerManager;
+import dev.encode42.serverhopper.ping.PingCache;
 import io.github.retrooper.packetevents.velocity.factory.VelocityPacketEventsBuilder;
 import org.slf4j.Logger;
 
@@ -83,7 +83,7 @@ public class ServerHopper {
 
 		PingCache.init();
 
-		CommandsManager.registerAll();
+		CommandManager.registerAll();
 		ListenerManager.registerAll();
 	}
 }

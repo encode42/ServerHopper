@@ -6,7 +6,7 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import dev.encode42.serverhopper.commands.ExecutableSubcommand;
-import dev.encode42.serverhopper.config.ConfigManager;
+import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.permissions.Permission;
 
 public class RootReloadCommand extends ExecutableSubcommand {
@@ -16,6 +16,7 @@ public class RootReloadCommand extends ExecutableSubcommand {
 		super(parentCommand, "reload");
 	}
 
+	@Override
 	public LiteralCommandNode<CommandSource> createSubcommand() {
 		return BrigadierCommand.literalArgumentBuilder(this.commandName)
 			.requires(RootReloadCommand.PERMISSION::hasPermission)

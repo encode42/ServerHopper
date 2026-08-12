@@ -12,6 +12,9 @@ repositories {
 dependencies {
     compileOnly("com.velocitypowered:velocity-api:3.5.0-SNAPSHOT")
     compileOnly("com.github.retrooper:packetevents-velocity:2.13.0")
+
+    implementation("net.kyori:adventure-nbt:4.26.1")
+
     compileOnly("org.projectpersistence:queue:1.1-SNAPSHOT")
 }
 

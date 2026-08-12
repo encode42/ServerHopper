@@ -8,25 +8,25 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import java.util.Optional;
 
 public class ConnectionManager {
-	public static ConnectionResult connect(Player player, RegisteredServer server) {
+	public static ConnectionStatus connect(Player player, RegisteredServer server) {
 		ServerConnection sourceServerConnection = ConnectionManager.getConnection(player);
 		RegisteredServer sourceServer = sourceServerConnection.getServer();
 
 		if (sourceServer.equals(server)) {
-			return ConnectionResult.ALREADY_CONNECTED;
+			return ConnectionStatus.ALREADY_CONNECTED;
 		}
 
 		ConnectionRequestBuilder connectionRequestBuilder = player.createConnectionRequest(server);
 		connectionRequestBuilder.connectWithIndication();
 
-		return ConnectionResult.SUCCESS;
+		return ConnectionStatus.SUCCESS;
 	}
 
-	public static ConnectionResult connect(Player sourcePlayer, Player destinationPlayer) {
+	public static ConnectionStatus connect(Player sourcePlayer, Player destinationPlayer) {
 		ServerConnection destinationServerConnection = ConnectionManager.getConnection(destinationPlayer);
 
 		if (destinationServerConnection == null) {
-			return ConnectionResult.FAILURE;
+			return ConnectionStatus.FAILURE;
 		}
 
 		RegisteredServer destinationServer = destinationServerConnection.getServer();

@@ -4,7 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
-import dev.encode42.serverhopper.config.ConfigManager;
+import dev.encode42.serverhopper.data.ConfigManager;
 
 public abstract class Executable {
 	public boolean isPlayer(CommandSource commandSource) {

@@ -1,6 +1,6 @@
 package dev.encode42.serverhopper.dialogs;
 
-import com.github.retrooper.packetevents.protocol.chat.clickevent.RunCommandClickEvent;
+import com.github.retrooper.packetevents.protocol.chat.clickevent.ClickEvent;
 import com.github.retrooper.packetevents.protocol.dialog.CommonDialogData;
 import com.github.retrooper.packetevents.protocol.dialog.Dialog;
 import com.github.retrooper.packetevents.protocol.dialog.DialogAction;
@@ -15,14 +15,21 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
-import dev.encode42.serverhopper.config.ConfigManager;
-import dev.encode42.serverhopper.connection.*;
+import dev.encode42.serverhopper.connection.ConnectionManager;
+import dev.encode42.serverhopper.data.ConfigManager;
+import dev.encode42.serverhopper.packets.ServerHelper;
+import dev.encode42.serverhopper.permissions.ServerPermission;
+import dev.encode42.serverhopper.ping.OfflinePingInfo;
+import dev.encode42.serverhopper.ping.OnlinePingInfo;
+import dev.encode42.serverhopper.ping.PingCache;
+import dev.encode42.serverhopper.ping.PingInfo;
 import net.kyori.adventure.text.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServerDialog {
+	private final Player player;
 	private final String serverName;
 
 	private final int buttonWidth;
@@ -33,6 +40,8 @@ public class ServerDialog {
 	}
 
 	public ServerDialog(Player player, int buttonWidth, int totalColumns) {
+		this.player = player;
+
 		ServerConnection serverConnection = ConnectionManager.getConnection(player);
 
 		if (serverConnection == null) {
@@ -122,6 +131,10 @@ public class ServerDialog {
 		List<ActionButton> buttons = new ArrayList<>();
 
 		for (PingInfo pingInfo : PingCache.getAll()) {
+			if (!ServerPermission.hasDefaultPermission(this.player, pingInfo.getName())) {
+				continue;
+			}
+
 			switch (onlineStatus) {
 				case ONLINE -> {
 					if (!pingInfo.isOnline()) {
@@ -200,7 +213,7 @@ public class ServerDialog {
 			return new ActionButton(buttonData, null);
 		}
 
-		RunCommandClickEvent clickEvent = new RunCommandClickEvent("/server %s".formatted(pingName));
+		ClickEvent clickEvent = ServerHelper.getClickEvent(pingName);
 		StaticAction clickAction = new StaticAction(clickEvent);
 
 		return new ActionButton(buttonData, clickAction);

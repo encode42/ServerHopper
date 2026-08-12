@@ -1,14 +1,14 @@
-package dev.encode42.serverhopper.messages.dialog;
+package dev.encode42.serverhopper.messages.move;
 
 import dev.encode42.serverhopper.messages.Message;
 import dev.encode42.serverhopper.messages.placeholders.ServerTranslation;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class TitleMessage extends Message {
-	public static final String DEFAULT_VALUE = "Server Hopper";
+public class MoveSentAllMessage extends Message {
+	public static final String DEFAULT_VALUE = "All players successfully moved to server <server>.";
 
-	public TitleMessage(String message) {
+	public MoveSentAllMessage(String message) {
 		super(message);
 	}
 
