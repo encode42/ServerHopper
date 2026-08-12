@@ -59,7 +59,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 		commandContext.getSource().sendMessage(
 			ConfigManager.messages()
 				.move()
-				.getMoveSent()
+				.getSent()
 				.parse(playerName, serverName)
 		);
 
@@ -76,7 +76,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 		commandContext.getSource().sendMessage(
 			ConfigManager.messages()
 				.move()
-				.getMoveSentAll()
+				.getSentAll()
 				.parse(serverName)
 		);
 
@@ -92,7 +92,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 			player.sendMessage(
 				ConfigManager.messages()
 					.move()
-					.getMoveReceived()
+					.getReceived()
 					.parse(serverName)
 			);
 		}

@@ -29,7 +29,7 @@ public class JoinPlayerArgument extends ExecutableArgument<String> {
 		if (!JoinCommand.PERMISSION.hasDefaultPermission(targetPlayer)) {
 			throw ConfigManager.messages()
 				.join()
-				.getInvalidJoin()
+				.getInvalid()
 				.error(targetPlayer.getUsername());
 		}
 

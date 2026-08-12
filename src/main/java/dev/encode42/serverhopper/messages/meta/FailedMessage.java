@@ -3,10 +3,10 @@ package dev.encode42.serverhopper.messages.meta;
 import dev.encode42.serverhopper.messages.Message;
 import net.kyori.adventure.text.Component;
 
-public class SuccessfulReloadMessage extends Message {
-	public static final String DEFAULT_VALUE = "<green>Configuration successfully reloaded!";
+public class FailedMessage extends Message {
+	public static final String DEFAULT_VALUE = "<red>Configuration failed to reload, check console for exception.";
 
-	public SuccessfulReloadMessage(String message) {
+	public FailedMessage(String message) {
 		super(message);
 	}
 

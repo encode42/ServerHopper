@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.messages.invites;
+package dev.encode42.serverhopper.messages.join;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
@@ -7,8 +7,8 @@ import dev.encode42.serverhopper.messages.Exception;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class InvalidInviteException extends Exception {
-	public static final String DEFAULT_VALUE = "<red>Player <username> cannot receive invites.";
+public class InvalidException extends Exception {
+	public static final String DEFAULT_VALUE = "<red>Player \"<username>\" cannot be joined.";
 
 	private final DynamicCommandExceptionType exception = new DynamicCommandExceptionType(
 		username -> VelocityBrigadierMessage.tooltip(
@@ -16,7 +16,7 @@ public class InvalidInviteException extends Exception {
 		)
 	);
 
-	public InvalidInviteException(String message) {
+	public InvalidException(String message) {
 		super(message);
 	}
 

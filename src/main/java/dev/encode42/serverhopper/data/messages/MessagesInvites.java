@@ -1,38 +1,38 @@
 package dev.encode42.serverhopper.data.messages;
 
-import dev.encode42.serverhopper.messages.invites.InvalidInviteException;
-import dev.encode42.serverhopper.messages.invites.InvalidServerInviteException;
-import dev.encode42.serverhopper.messages.invites.InviteReceivedMessage;
-import dev.encode42.serverhopper.messages.invites.InviteSentMessage;
+import dev.encode42.serverhopper.messages.invites.InvalidPlayerException;
+import dev.encode42.serverhopper.messages.invites.InvalidServerException;
+import dev.encode42.serverhopper.messages.invites.ReceivedMessage;
+import dev.encode42.serverhopper.messages.invites.SentMessage;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
 public class MessagesInvites {
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String invalidInvite = InvalidInviteException.DEFAULT_VALUE;
+	private String invalidPlayer = InvalidPlayerException.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String invalidServerInvite = InvalidServerInviteException.DEFAULT_VALUE;
+	private String invalidServer = InvalidServerException.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String inviteReceived = InviteReceivedMessage.DEFAULT_VALUE;
+	private String received = ReceivedMessage.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String inviteSent = InviteSentMessage.DEFAULT_VALUE;
+	private String sent = SentMessage.DEFAULT_VALUE;
 
-	public InvalidInviteException getInvalidInvite() {
-		return new InvalidInviteException(this.invalidInvite);
+	public InvalidPlayerException getInvalidPlayer() {
+		return new InvalidPlayerException(this.invalidPlayer);
 	}
 
-	public InvalidServerInviteException getInvalidServerInvite() {
-		return new InvalidServerInviteException(this.invalidServerInvite);
+	public InvalidServerException getInvalidServer() {
+		return new InvalidServerException(this.invalidServer);
 	}
 
-	public InviteReceivedMessage getInviteReceived() {
-		return new InviteReceivedMessage(this.inviteReceived);
+	public ReceivedMessage getReceived() {
+		return new ReceivedMessage(this.received);
 	}
 
-	public InviteSentMessage getInviteSent() {
-		return new InviteSentMessage(this.inviteSent);
+	public SentMessage getSent() {
+		return new SentMessage(this.sent);
 	}
 }

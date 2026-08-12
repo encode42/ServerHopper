@@ -1,30 +1,30 @@
 package dev.encode42.serverhopper.data.messages;
 
-import dev.encode42.serverhopper.messages.move.MoveReceivedMessage;
-import dev.encode42.serverhopper.messages.move.MoveSentAllMessage;
-import dev.encode42.serverhopper.messages.move.MoveSentMessage;
+import dev.encode42.serverhopper.messages.move.ReceivedMessage;
+import dev.encode42.serverhopper.messages.move.SentAllMessage;
+import dev.encode42.serverhopper.messages.move.SentMessage;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
 public class MessagesMove {
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String moveReceived = MoveReceivedMessage.DEFAULT_VALUE;
+	private String received = ReceivedMessage.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String moveSentAll = MoveSentAllMessage.DEFAULT_VALUE;
+	private String sentAll = SentAllMessage.DEFAULT_VALUE;
 
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-	private String moveSent = MoveSentMessage.DEFAULT_VALUE;
+	private String sent = SentMessage.DEFAULT_VALUE;
 
-	public MoveReceivedMessage getMoveReceived() {
-		return new MoveReceivedMessage(this.moveReceived);
+	public ReceivedMessage getReceived() {
+		return new ReceivedMessage(this.received);
 	}
 
-	public MoveSentAllMessage getMoveSentAll() {
-		return new MoveSentAllMessage(this.moveSentAll);
+	public SentAllMessage getSentAll() {
+		return new SentAllMessage(this.sentAll);
 	}
 
-	public MoveSentMessage getMoveSent() {
-		return new MoveSentMessage(this.moveSent);
+	public SentMessage getSent() {
+		return new SentMessage(this.sent);
 	}
 }

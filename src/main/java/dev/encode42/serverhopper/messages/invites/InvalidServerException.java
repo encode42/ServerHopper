@@ -9,7 +9,7 @@ import dev.encode42.serverhopper.utilities.Pair;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class InvalidServerInviteException extends Exception {
+public class InvalidServerException extends Exception {
 	public static final String DEFAULT_VALUE = "<red>Player <username> cannot receive invites to <server>.";
 
 	private final DynamicCommandExceptionType exception = new DynamicCommandExceptionType(
@@ -23,7 +23,7 @@ public class InvalidServerInviteException extends Exception {
 		}
 	);
 
-	public InvalidServerInviteException(String message) {
+	public InvalidServerException(String message) {
 		super(message);
 	}
 

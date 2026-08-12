@@ -7,10 +7,10 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class InviteReceivedMessage extends Message {
+public class ReceivedMessage extends Message {
 	public static final String DEFAULT_VALUE = "<username> has invited you to their server, <server>!\n<blue><underlined><click_event>Click here to join them.";
 
-	public InviteReceivedMessage(String message) {
+	public ReceivedMessage(String message) {
 		super(message);
 	}
 

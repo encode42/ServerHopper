@@ -34,7 +34,7 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 		if (!JoinCommand.PERMISSION.hasDefaultPermission(targetPlayer)) {
 			throw ConfigManager.messages()
 				.invites()
-				.getInvalidInvite()
+				.getInvalidPlayer()
 				.error(targetPlayerName);
 		}
 
@@ -46,21 +46,21 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 		if (!ServerPermission.hasDefaultPermission(targetPlayer, executingServerName)) {
 			throw ConfigManager.messages()
 				.invites()
-				.getInvalidServerInvite()
+				.getInvalidServer()
 				.error(targetPlayerName, executingServerName);
 		}
 
 		targetPlayer.sendMessage(
 			ConfigManager.messages()
 				.invites()
-				.getInviteReceived()
+				.getReceived()
 				.parse(executingPlayerName, executingServerName)
 		);
 
 		executingPlayer.sendMessage(
 			ConfigManager.messages()
 				.invites()
-				.getInviteSent()
+				.getSent()
 				.parse(targetPlayerName, executingServerName)
 		);
 

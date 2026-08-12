@@ -5,10 +5,10 @@ import dev.encode42.serverhopper.messages.placeholders.ServerTranslation;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class MoveSentAllMessage extends Message {
-	public static final String DEFAULT_VALUE = "All players successfully moved to server <server>.";
+public class ReceivedMessage extends Message {
+	public static final String DEFAULT_VALUE = "You have been moved to server <server>.";
 
-	public MoveSentAllMessage(String message) {
+	public ReceivedMessage(String message) {
 		super(message);
 	}
 
