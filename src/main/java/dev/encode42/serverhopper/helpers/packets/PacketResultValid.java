@@ -3,12 +3,12 @@ package dev.encode42.serverhopper.helpers.packets;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-public class ServerResultValid extends ServerResult {
+public class PacketResultValid extends PacketResult {
 	private final Player player;
 	private final RegisteredServer server;
 
-	public ServerResultValid(Player player, RegisteredServer server) {
-		super(ServerStatus.SUCCESS);
+	public PacketResultValid(Player player, RegisteredServer server) {
+		super(PacketStatus.SUCCESS);
 
 		this.player = player;
 		this.server = server;

@@ -2,11 +2,11 @@ package dev.encode42.serverhopper.helpers.packets;
 
 import com.velocitypowered.api.proxy.Player;
 
-public class ServerResultInvalid extends ServerResult {
+public class PacketResultInvalid extends PacketResult {
 	private final String serverName;
 	private final Player player;
 
-	public ServerResultInvalid(ServerStatus status, String serverName, Player player) {
+	public PacketResultInvalid(PacketStatus status, String serverName, Player player) {
 		super(status);
 
 		this.serverName = serverName;

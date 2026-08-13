@@ -7,10 +7,10 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
 import dev.encode42.serverhopper.helpers.connections.ConnectionStatus;
-import dev.encode42.serverhopper.helpers.packets.ServerHelper;
-import dev.encode42.serverhopper.helpers.packets.ServerResult;
-import dev.encode42.serverhopper.helpers.packets.ServerResultInvalid;
-import dev.encode42.serverhopper.helpers.packets.ServerResultValid;
+import dev.encode42.serverhopper.helpers.packets.PacketHelper;
+import dev.encode42.serverhopper.helpers.packets.PacketResult;
+import dev.encode42.serverhopper.helpers.packets.PacketResultInvalid;
+import dev.encode42.serverhopper.helpers.packets.PacketResultValid;
 import dev.encode42.serverhopper.listeners.PacketEventListener;
 import org.jspecify.annotations.NonNull;
 
@@ -21,9 +21,9 @@ public class ServerHopListener extends PacketEventListener {
 			return;
 		}
 
-		ServerResult result = ServerHelper.validate(event);
+		PacketResult result = PacketHelper.validate(event);
 
-		if (result instanceof ServerResultInvalid invalidResult) {
+		if (result instanceof PacketResultInvalid invalidResult) {
 			String serverName = invalidResult.getServerName();
 			Player player = invalidResult.getPlayer();
 
@@ -46,7 +46,7 @@ public class ServerHopListener extends PacketEventListener {
 			return;
 		}
 
-		if (result instanceof ServerResultValid validResult) {
+		if (result instanceof PacketResultValid validResult) {
 			Player player = validResult.getPlayer();
 			RegisteredServer server = validResult.getServer();
 

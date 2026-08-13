@@ -17,7 +17,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import com.velocitypowered.api.proxy.server.ServerInfo;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
-import dev.encode42.serverhopper.helpers.packets.ServerHelper;
+import dev.encode42.serverhopper.helpers.packets.PacketHelper;
 import dev.encode42.serverhopper.helpers.pings.OfflinePingInfo;
 import dev.encode42.serverhopper.helpers.pings.OnlinePingInfo;
 import dev.encode42.serverhopper.helpers.pings.PingCache;
@@ -213,7 +213,7 @@ public class ServerDialog {
 			return new ActionButton(buttonData, null);
 		}
 
-		ClickEvent clickEvent = ServerHelper.getClickEvent(pingName);
+		ClickEvent clickEvent = PacketHelper.getClickEvent(pingName);
 		StaticAction clickAction = new StaticAction(clickEvent);
 
 		return new ActionButton(buttonData, clickAction);

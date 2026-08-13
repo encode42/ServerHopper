@@ -19,36 +19,36 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ServerHelper {
+public class PacketHelper {
 	public static String PACKET_KEY = "hop";
 	public static String DATA_KEY = "server";
 
-	public static ResourceLocation PACKET_EVENTS_KEY = new ResourceLocation(ServerHopper.ID, ServerHelper.PACKET_KEY);
+	public static ResourceLocation PACKET_EVENTS_KEY = new ResourceLocation(ServerHopper.ID, PacketHelper.PACKET_KEY);
 
 	public static CustomClickEvent getClickEvent(RegisteredServer server) {
-		return ServerHelper.getClickEvent(server.getServerInfo().getName());
+		return PacketHelper.getClickEvent(server.getServerInfo().getName());
 	}
 
 	public static CustomClickEvent getClickEvent(String serverName) {
 		NBTCompound data = new NBTCompound();
 
-		data.setTag(ServerHelper.DATA_KEY, new NBTString(serverName));
+		data.setTag(PacketHelper.DATA_KEY, new NBTString(serverName));
 
 		return new CustomClickEvent(
-			ServerHelper.PACKET_EVENTS_KEY,
+			PacketHelper.PACKET_EVENTS_KEY,
 			data
 		);
 	}
 
 	public static String getServerName(WrapperPlayClientCustomClickAction packet) {
-		if (!packet.getId().equals(ServerHelper.PACKET_EVENTS_KEY)) {
+		if (!packet.getId().equals(PacketHelper.PACKET_EVENTS_KEY)) {
 			return null;
 		}
 
 		NBT payload = packet.getPayload();
 
 		if (payload instanceof NBTCompound data) {
-			return data.getStringTagValueOrNull(ServerHelper.DATA_KEY);
+			return data.getStringTagValueOrNull(PacketHelper.DATA_KEY);
 		}
 
 		if (payload instanceof NBTString data) {
@@ -60,7 +60,7 @@ public class ServerHelper {
 				return null;
 			}
 
-			return tag.getString(ServerHelper.DATA_KEY);
+			return tag.getString(PacketHelper.DATA_KEY);
 		}
 
 		return null;
@@ -82,29 +82,29 @@ public class ServerHelper {
 		return optionalPlayer.orElse(null);
 	}
 
-	public static ServerResult validate(PacketReceiveEvent event) {
+	public static PacketResult validate(PacketReceiveEvent event) {
 		WrapperPlayClientCustomClickAction clickAction = new WrapperPlayClientCustomClickAction(event);
 
-		String serverName = ServerHelper.getServerName(clickAction);
+		String serverName = PacketHelper.getServerName(clickAction);
 		if (serverName == null) {
-			return ServerResult.EMPTY;
+			return PacketResult.EMPTY;
 		}
 
-		Player player = ServerHelper.getPlayer(event);
+		Player player = PacketHelper.getPlayer(event);
 		if (player == null) {
-			return ServerResult.EMPTY;
+			return PacketResult.EMPTY;
 		}
 
-		RegisteredServer server = ServerHelper.getServer(serverName);
+		RegisteredServer server = PacketHelper.getServer(serverName);
 
 		if (server == null) {
-			return new ServerResultInvalid(ServerStatus.FAILURE, serverName, player);
+			return new PacketResultInvalid(PacketStatus.FAILURE, serverName, player);
 		}
 
 		if (!ServerPermission.hasDefaultPermission(player, serverName)) {
-			return new ServerResultInvalid(ServerStatus.NO_PERMISSION, serverName, player);
+			return new PacketResultInvalid(PacketStatus.NO_PERMISSION, serverName, player);
 		}
 
-		return new ServerResultValid(player, server);
+		return new PacketResultValid(player, server);
 	}
 }

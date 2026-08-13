@@ -1,6 +1,6 @@
 package dev.encode42.serverhopper.messages.invites;
 
-import dev.encode42.serverhopper.helpers.packets.ServerHelper;
+import dev.encode42.serverhopper.helpers.packets.PacketHelper;
 import dev.encode42.serverhopper.messages.Message;
 import dev.encode42.serverhopper.messages.placeholders.ServerTranslation;
 import net.kyori.adventure.text.Component;
@@ -15,7 +15,7 @@ public class ReceivedMessage extends Message {
 	}
 
 	public Component parse(String username, String serverName) {
-		ClickEvent clickEvent = ServerHelper.getClickEvent(serverName).asAdventure();
+		ClickEvent clickEvent = PacketHelper.getClickEvent(serverName).asAdventure();
 
 		return super.parse(
 			Placeholder.unparsed("username", username),
