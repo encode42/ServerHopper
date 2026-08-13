@@ -12,11 +12,11 @@ public class SentMessage extends Message {
 		super(message);
 	}
 
-	public Component parse(String username, String server) {
+	public Component parse(String username, String serverName) {
 		return super.parse(
 			Placeholder.unparsed("username", username),
-			Placeholder.unparsed("server", server),
-			ServerTranslation.resolve(server)
+			Placeholder.unparsed("server", serverName),
+			ServerTranslation.resolve(serverName)
 		);
 	}
 }

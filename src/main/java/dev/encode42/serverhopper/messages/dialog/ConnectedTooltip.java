@@ -12,10 +12,10 @@ public class ConnectedTooltip extends Message {
 		super(message);
 	}
 
-	public Component parse(String server) {
+	public Component parse(String serverName) {
 		return super.parse(
-			Placeholder.unparsed("server", server),
-			ServerTranslation.resolve(server)
+			Placeholder.unparsed("server", serverName),
+			ServerTranslation.resolve(serverName)
 		);
 	}
 }

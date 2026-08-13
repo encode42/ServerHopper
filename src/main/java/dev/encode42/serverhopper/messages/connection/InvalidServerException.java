@@ -11,8 +11,8 @@ public class InvalidServerException extends Exception {
 	public static final String DEFAULT_VALUE = "<red>An error occurred while connecting to <server>.";
 
 	private final DynamicCommandExceptionType exception = new DynamicCommandExceptionType(
-		server -> VelocityBrigadierMessage.tooltip(
-			this.parse(server.toString())
+		serverName -> VelocityBrigadierMessage.tooltip(
+			this.parse(serverName.toString())
 		)
 	);
 
@@ -20,11 +20,11 @@ public class InvalidServerException extends Exception {
 		super(message);
 	}
 
-	public Component parse(String server) {
-		return super.parse(Placeholder.unparsed("server", server));
+	public Component parse(String serverName) {
+		return super.parse(Placeholder.unparsed("server", serverName));
 	}
 
-	public CommandSyntaxException error(String server) {
-		return this.exception.create(server);
+	public CommandSyntaxException error(String serverName) {
+		return this.exception.create(serverName);
 	}
 }

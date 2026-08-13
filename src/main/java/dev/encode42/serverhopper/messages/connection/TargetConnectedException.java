@@ -27,16 +27,16 @@ public class TargetConnectedException extends Exception {
 		super(message);
 	}
 
-	public Component parse(String username, String server) {
+	public Component parse(String username, String serverName) {
 		return super.parse(
 			Placeholder.unparsed("username", username),
-			Placeholder.unparsed("server", server),
-			ServerTranslation.resolve(server)
+			Placeholder.unparsed("server", serverName),
+			ServerTranslation.resolve(serverName)
 		);
 	}
 
-	public CommandSyntaxException error(String username, String server) {
-		Pair<String, String> pair = new Pair<>(username, server);
+	public CommandSyntaxException error(String username, String serverName) {
+		Pair<String, String> pair = new Pair<>(username, serverName);
 
 		return this.exception.create(pair);
 	}
