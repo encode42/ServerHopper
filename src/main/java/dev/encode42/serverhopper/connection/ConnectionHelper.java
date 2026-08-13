@@ -7,9 +7,9 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import java.util.Optional;
 
-public class ConnectionManager {
+public class ConnectionHelper {
 	public static ConnectionStatus connect(Player player, RegisteredServer server) {
-		ServerConnection sourceServerConnection = ConnectionManager.getConnection(player);
+		ServerConnection sourceServerConnection = ConnectionHelper.getConnection(player);
 		RegisteredServer sourceServer = sourceServerConnection.getServer();
 
 		if (sourceServer.equals(server)) {
@@ -23,7 +23,7 @@ public class ConnectionManager {
 	}
 
 	public static ConnectionStatus connect(Player sourcePlayer, Player destinationPlayer) {
-		ServerConnection destinationServerConnection = ConnectionManager.getConnection(destinationPlayer);
+		ServerConnection destinationServerConnection = ConnectionHelper.getConnection(destinationPlayer);
 
 		if (destinationServerConnection == null) {
 			return ConnectionStatus.FAILURE;
@@ -31,7 +31,7 @@ public class ConnectionManager {
 
 		RegisteredServer destinationServer = destinationServerConnection.getServer();
 
-		return ConnectionManager.connect(sourcePlayer, destinationServer);
+		return ConnectionHelper.connect(sourcePlayer, destinationServer);
 	}
 
 	public static ServerConnection getConnection(Player player) {

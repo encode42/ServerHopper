@@ -11,7 +11,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
 import dev.encode42.serverhopper.commands.join.JoinCommand;
-import dev.encode42.serverhopper.connection.ConnectionManager;
+import dev.encode42.serverhopper.connection.ConnectionHelper;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.permissions.ServerPermission;
 
@@ -50,7 +50,7 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 				.error(targetPlayerName);
 		}
 
-		ServerConnection executingServerConnection = ConnectionManager.getConnection(executingPlayer);
+		ServerConnection executingServerConnection = ConnectionHelper.getConnection(executingPlayer);
 
 		RegisteredServer executingServer = executingServerConnection.getServer();
 		String executingServerName = executingServer.getServerInfo().getName();

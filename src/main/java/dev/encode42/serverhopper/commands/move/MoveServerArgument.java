@@ -11,7 +11,7 @@ import dev.encode42.serverhopper.ServerHopper;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
 import dev.encode42.serverhopper.commands.arguments.ServerArgument;
-import dev.encode42.serverhopper.connection.ConnectionManager;
+import dev.encode42.serverhopper.connection.ConnectionHelper;
 import dev.encode42.serverhopper.connection.ConnectionStatus;
 import dev.encode42.serverhopper.data.ConfigManager;
 
@@ -86,7 +86,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 	private ConnectionStatus movePlayer(Player player, RegisteredServer server) {
 		String serverName = server.getServerInfo().getName();
 
-		ConnectionStatus connectionStatus = ConnectionManager.connect(player, server);
+		ConnectionStatus connectionStatus = ConnectionHelper.connect(player, server);
 
 		if (connectionStatus == ConnectionStatus.SUCCESS) {
 			player.sendMessage(

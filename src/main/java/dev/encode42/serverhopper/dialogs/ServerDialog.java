@@ -37,7 +37,7 @@ public class ServerDialog {
 	public ServerDialog(Player player, int buttonWidth, int totalColumns) {
 		this.player = player;
 
-		ServerConnection serverConnection = ConnectionManager.getConnection(player);
+		ServerConnection serverConnection = ConnectionHelper.getConnection(player);
 
 		if (serverConnection == null) {
 			this.serverName = "unknown";

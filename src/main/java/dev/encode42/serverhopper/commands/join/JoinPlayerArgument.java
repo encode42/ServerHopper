@@ -8,7 +8,7 @@ import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
-import dev.encode42.serverhopper.connection.ConnectionManager;
+import dev.encode42.serverhopper.connection.ConnectionHelper;
 import dev.encode42.serverhopper.connection.ConnectionStatus;
 import dev.encode42.serverhopper.data.ConfigManager;
 
@@ -33,7 +33,7 @@ public class JoinPlayerArgument extends ExecutableArgument<String> {
 				.error(targetPlayer.getUsername());
 		}
 
-		ConnectionStatus connectionStatus = ConnectionManager.connect(executingPlayer, targetPlayer);
+		ConnectionStatus connectionStatus = ConnectionHelper.connect(executingPlayer, targetPlayer);
 
 		if (connectionStatus != ConnectionStatus.SUCCESS) {
 			throw ConfigManager.messages()

@@ -45,7 +45,7 @@ public class ServerHopListener extends PacketEventListener {
 			Player player = validResult.getPlayer();
 			RegisteredServer server = validResult.getServer();
 
-			ConnectionStatus connectionStatus = ConnectionManager.connect(player, server);
+			ConnectionStatus connectionStatus = ConnectionHelper.connect(player, server);
 
 			if (connectionStatus != ConnectionStatus.SUCCESS) {
 				player.sendMessage(
