@@ -1,10 +1,10 @@
 package dev.encode42.serverhopper.helpers.pings;
 
-public class OnlinePingInfo extends PingInfo {
+public class PingInfoOnline extends PingInfo {
 	private final int maxPlayers;
 	private final int connectedPlayers;
 
-	public OnlinePingInfo(
+	public PingInfoOnline(
 		String name,
 		int maxPlayers,
 		int connectedPlayers,

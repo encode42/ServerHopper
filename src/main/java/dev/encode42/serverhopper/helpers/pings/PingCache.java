@@ -56,7 +56,7 @@ public class PingCache {
 		if (pingInfo == null) {
 			String serverName = server.getServerInfo().getName();
 
-			return new OfflinePingInfo(serverName, false);
+			return new PingInfoOffline(serverName, false);
 		}
 
 		return pingInfo;
@@ -91,7 +91,7 @@ public class PingCache {
 					Optional<ServerPing.Players> optionalPlayers = serverPing.getPlayers();
 
 					if (optionalPlayers.isEmpty()) {
-						PingCache.cache.put(server, new OfflinePingInfo(
+						PingCache.cache.put(server, new PingInfoOffline(
 							server.getServerInfo().getName(),
 							isSpecial
 						));
@@ -101,7 +101,7 @@ public class PingCache {
 
 					ServerPing.Players players = optionalPlayers.get();
 
-					PingCache.cache.put(server, new OnlinePingInfo(
+					PingCache.cache.put(server, new PingInfoOnline(
 						server.getServerInfo().getName(),
 						players.getMax(),
 						players.getOnline(),
@@ -111,7 +111,7 @@ public class PingCache {
 					return serverPing;
 				}))
 				.exceptionally((throwable) -> {
-					PingCache.cache.put(server, new OfflinePingInfo(
+					PingCache.cache.put(server, new PingInfoOffline(
 						server.getServerInfo().getName(),
 						isSpecial
 					));

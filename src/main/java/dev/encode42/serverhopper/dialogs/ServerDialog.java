@@ -18,10 +18,10 @@ import com.velocitypowered.api.proxy.server.ServerInfo;
 import dev.encode42.serverhopper.data.ConfigManager;
 import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
 import dev.encode42.serverhopper.helpers.packets.PacketHelper;
-import dev.encode42.serverhopper.helpers.pings.OfflinePingInfo;
-import dev.encode42.serverhopper.helpers.pings.OnlinePingInfo;
 import dev.encode42.serverhopper.helpers.pings.PingCache;
 import dev.encode42.serverhopper.helpers.pings.PingInfo;
+import dev.encode42.serverhopper.helpers.pings.PingInfoOffline;
+import dev.encode42.serverhopper.helpers.pings.PingInfoOnline;
 import dev.encode42.serverhopper.permissions.ServerPermission;
 import net.kyori.adventure.text.Component;
 
@@ -173,13 +173,13 @@ public class ServerDialog {
 
 	private ActionButton createButton(PingInfo pingInfo) {
 		if (pingInfo.isOnline()) {
-			return this.createOnlineButton((OnlinePingInfo) pingInfo);
+			return this.createOnlineButton((PingInfoOnline) pingInfo);
 		} else {
-			return this.createOfflineButton((OfflinePingInfo) pingInfo);
+			return this.createOfflineButton((PingInfoOffline) pingInfo);
 		}
 	}
 
-	private ActionButton createOnlineButton(OnlinePingInfo pingInfo) {
+	private ActionButton createOnlineButton(PingInfoOnline pingInfo) {
 		String pingName = pingInfo.getName();
 
 		boolean isConnected = pingName.equals(this.serverName);
@@ -219,7 +219,7 @@ public class ServerDialog {
 		return new ActionButton(buttonData, clickAction);
 	}
 
-	private ActionButton createOfflineButton(OfflinePingInfo pingInfo) {
+	private ActionButton createOfflineButton(PingInfoOffline pingInfo) {
 		String pingName = pingInfo.getName();
 
 		Component offlineStatus = ConfigManager.messages()
