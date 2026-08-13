@@ -9,9 +9,9 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.ServerArgument;
-import dev.encode42.serverhopper.connection.ConnectionHelper;
-import dev.encode42.serverhopper.connection.ConnectionStatus;
 import dev.encode42.serverhopper.data.ConfigManager;
+import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
+import dev.encode42.serverhopper.helpers.connections.ConnectionStatus;
 import dev.encode42.serverhopper.permissions.ServerPermission;
 
 public class HopServerArgument extends ExecutableArgument<String> {

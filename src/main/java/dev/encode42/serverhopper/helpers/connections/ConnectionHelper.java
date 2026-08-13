@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.connection;
+package dev.encode42.serverhopper.helpers.connections;
 
 import com.velocitypowered.api.proxy.ConnectionRequestBuilder;
 import com.velocitypowered.api.proxy.Player;

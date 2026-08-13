@@ -11,8 +11,8 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
 import dev.encode42.serverhopper.commands.join.JoinCommand;
-import dev.encode42.serverhopper.connection.ConnectionHelper;
 import dev.encode42.serverhopper.data.ConfigManager;
+import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
 import dev.encode42.serverhopper.permissions.ServerPermission;
 
 import java.util.UUID;

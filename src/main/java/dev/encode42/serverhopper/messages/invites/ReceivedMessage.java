@@ -1,6 +1,6 @@
 package dev.encode42.serverhopper.messages.invites;
 
-import dev.encode42.serverhopper.connection.ServerHelper;
+import dev.encode42.serverhopper.helpers.packets.ServerHelper;
 import dev.encode42.serverhopper.messages.Message;
 import dev.encode42.serverhopper.messages.placeholders.ServerTranslation;
 import net.kyori.adventure.text.Component;

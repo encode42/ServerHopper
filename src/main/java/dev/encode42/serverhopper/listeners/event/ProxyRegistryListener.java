@@ -3,7 +3,7 @@ package dev.encode42.serverhopper.listeners.event;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.server.ServerRegisteredEvent;
 import com.velocitypowered.api.event.proxy.server.ServerUnregisteredEvent;
-import dev.encode42.serverhopper.connection.PingCache;
+import dev.encode42.serverhopper.helpers.pings.PingCache;
 import dev.encode42.serverhopper.listeners.ProxyEventListener;
 
 public class ProxyRegistryListener extends ProxyEventListener {

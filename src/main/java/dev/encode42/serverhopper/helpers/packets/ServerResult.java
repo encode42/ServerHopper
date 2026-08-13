@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.connection;
+package dev.encode42.serverhopper.helpers.packets;
 
 public class ServerResult {
 	public static final ServerResult EMPTY = new ServerResult(ServerStatus.EMPTY);

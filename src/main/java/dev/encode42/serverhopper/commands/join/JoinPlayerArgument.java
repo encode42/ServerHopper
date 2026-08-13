@@ -8,9 +8,9 @@ import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
-import dev.encode42.serverhopper.connection.ConnectionHelper;
-import dev.encode42.serverhopper.connection.ConnectionStatus;
 import dev.encode42.serverhopper.data.ConfigManager;
+import dev.encode42.serverhopper.helpers.connections.ConnectionHelper;
+import dev.encode42.serverhopper.helpers.connections.ConnectionStatus;
 
 public class JoinPlayerArgument extends ExecutableArgument<String> {
 	@Override

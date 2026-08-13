@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.connection;
+package dev.encode42.serverhopper.helpers.pings;
 
 public class PingInfo {
 	private final long updated = System.currentTimeMillis();
