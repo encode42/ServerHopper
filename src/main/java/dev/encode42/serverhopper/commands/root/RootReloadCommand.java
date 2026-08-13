@@ -31,7 +31,7 @@ public class RootReloadCommand extends ExecutableSubcommand {
 			commandContext.getSource().sendMessage(
 				ConfigManager.messages()
 					.meta()
-					.getFailedReload()
+					.failedReload()
 					.parse()
 			);
 
@@ -41,7 +41,7 @@ public class RootReloadCommand extends ExecutableSubcommand {
 		commandContext.getSource().sendMessage(
 			ConfigManager.messages()
 				.meta()
-				.getSuccessfulReload()
+				.successfulReload()
 				.parse()
 		);
 

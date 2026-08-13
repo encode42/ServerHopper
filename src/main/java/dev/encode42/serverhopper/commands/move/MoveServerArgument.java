@@ -52,14 +52,14 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 		if (connectionStatus != ConnectionStatus.SUCCESS) {
 			throw ConfigManager.messages()
 				.connection()
-				.getTargetConnected()
+				.targetConnected()
 				.error(playerName, serverName);
 		}
 
 		commandContext.getSource().sendMessage(
 			ConfigManager.messages()
 				.move()
-				.getSent()
+				.sent()
 				.parse(playerName, serverName)
 		);
 
@@ -76,7 +76,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 		commandContext.getSource().sendMessage(
 			ConfigManager.messages()
 				.move()
-				.getSentAll()
+				.sentAll()
 				.parse(serverName)
 		);
 
@@ -92,7 +92,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 			player.sendMessage(
 				ConfigManager.messages()
 					.move()
-					.getReceived()
+					.received()
 					.parse(serverName)
 			);
 		}

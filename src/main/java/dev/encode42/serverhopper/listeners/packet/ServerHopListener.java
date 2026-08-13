@@ -31,14 +31,14 @@ public class ServerHopListener extends PacketEventListener {
 				case FAILURE -> player.sendMessage(
 					ConfigManager.messages()
 						.connection()
-						.getInvalidServer()
+						.invalidServer()
 						.parse(serverName)
 				);
 
 				case NO_PERMISSION -> player.sendMessage(
 					ConfigManager.messages()
 						.connection()
-						.getInvalidPermission()
+						.invalidPermission()
 						.parse(serverName)
 				);
 			}
@@ -56,7 +56,7 @@ public class ServerHopListener extends PacketEventListener {
 				player.sendMessage(
 					ConfigManager.messages()
 						.connection()
-						.getExecutorConnected()
+						.executorConnected()
 						.parse()
 				);
 			}

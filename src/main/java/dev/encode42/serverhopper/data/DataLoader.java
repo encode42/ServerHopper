@@ -55,6 +55,10 @@ public class DataLoader<T extends ConfigNode> {
 			throw new RuntimeException(exception);
 		}
 
+		if (this.configInstance instanceof Initializable initializableConfig) {
+			initializableConfig.init();
+		}
+
 		this.save();
 
 		return this.configInstance;

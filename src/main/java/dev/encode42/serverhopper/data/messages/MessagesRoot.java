@@ -1,10 +1,11 @@
 package dev.encode42.serverhopper.data.messages;
 
 import dev.encode42.serverhopper.data.ConfigNode;
+import dev.encode42.serverhopper.data.Initializable;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
-public class MessagesRoot extends ConfigNode {
+public class MessagesRoot extends ConfigNode implements Initializable {
 	@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 	private MessagesArguments arguments = new MessagesArguments();
 
@@ -52,6 +53,17 @@ public class MessagesRoot extends ConfigNode {
 
 	public MessagesMove move() {
 		return this.move;
+	}
+
+	@Override
+	public void init() {
+		this.arguments.init();
+		this.connection.init();
+		this.dialog.init();
+		this.invites.init();
+		this.join.init();
+		this.meta.init();
+		this.move.init();
 	}
 }
 

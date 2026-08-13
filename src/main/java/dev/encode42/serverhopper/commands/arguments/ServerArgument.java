@@ -49,7 +49,7 @@ public class ServerArgument {
 		if (optionalServer.isEmpty()) {
 			throw ConfigManager.messages()
 				.arguments()
-				.getInvalidServer()
+				.invalidServer()
 				.error(argument);
 		}
 

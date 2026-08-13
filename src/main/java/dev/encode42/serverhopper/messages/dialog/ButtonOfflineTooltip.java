@@ -5,10 +5,10 @@ import dev.encode42.serverhopper.messages.placeholders.ServerTranslation;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public class ConnectedTooltip extends Message {
-	public static final String DEFAULT_VALUE = "<red>You are already connected to this server!";
+public class ButtonOfflineTooltip extends Message {
+	public static final String DEFAULT_VALUE = "<red>You cannot connect to offline servers.";
 
-	public ConnectedTooltip(String message) {
+	public ButtonOfflineTooltip(String message) {
 		super(message);
 	}
 

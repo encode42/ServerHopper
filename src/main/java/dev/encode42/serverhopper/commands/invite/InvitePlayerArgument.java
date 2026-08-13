@@ -36,7 +36,7 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 		if (executingPlayerUniqueId.equals(targetPlayerUniqueID)) {
 			throw ConfigManager.messages()
 				.invites()
-				.getInvalidSelf()
+				.invalidSelf()
 				.error();
 		}
 
@@ -46,7 +46,7 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 		if (!JoinCommand.PERMISSION.hasDefaultPermission(targetPlayer)) {
 			throw ConfigManager.messages()
 				.invites()
-				.getInvalidPlayer()
+				.invalidPlayer()
 				.error(targetPlayerName);
 		}
 
@@ -58,21 +58,21 @@ public class InvitePlayerArgument extends ExecutableArgument<String> {
 		if (!ServerPermission.hasDefaultPermission(targetPlayer, executingServerName)) {
 			throw ConfigManager.messages()
 				.invites()
-				.getInvalidServer()
+				.invalidServer()
 				.error(targetPlayerName, executingServerName);
 		}
 
 		targetPlayer.sendMessage(
 			ConfigManager.messages()
 				.invites()
-				.getReceived()
+				.received()
 				.parse(executingPlayerName, executingServerName)
 		);
 
 		executingPlayer.sendMessage(
 			ConfigManager.messages()
 				.invites()
-				.getSent()
+				.sent()
 				.parse(targetPlayerName, executingServerName)
 		);
 

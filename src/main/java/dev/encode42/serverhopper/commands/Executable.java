@@ -20,7 +20,7 @@ public abstract class Executable {
 
 		throw ConfigManager.messages()
 			.arguments()
-			.getNotPlayer()
+			.notPlayer()
 			.error();
 	}
 }

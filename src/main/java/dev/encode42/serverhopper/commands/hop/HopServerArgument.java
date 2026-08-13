@@ -33,7 +33,7 @@ public class HopServerArgument extends ExecutableArgument<String> {
 		if (!ServerPermission.hasDefaultPermission(sourcePlayer, serverName)) {
 			throw ConfigManager.messages()
 				.connection()
-				.getInvalidPermission()
+				.invalidPermission()
 				.error(serverName);
 		}
 
@@ -42,7 +42,7 @@ public class HopServerArgument extends ExecutableArgument<String> {
 		if (connectionStatus != ConnectionStatus.SUCCESS) {
 			throw ConfigManager.messages()
 				.connection()
-				.getExecutorConnected()
+				.executorConnected()
 				.error();
 		}
 

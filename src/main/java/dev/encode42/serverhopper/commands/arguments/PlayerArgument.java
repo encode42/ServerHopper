@@ -52,7 +52,7 @@ public class PlayerArgument {
 		if (optionalPlayer.isEmpty()) {
 			throw ConfigManager.messages()
 				.arguments()
-				.getInvalidPlayer()
+				.invalidPlayer()
 				.error(argument);
 		}
 

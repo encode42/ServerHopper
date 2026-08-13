@@ -60,7 +60,7 @@ public class ServerDialog {
 	public Dialog create() {
 		Component dialogTitle = ConfigManager.messages()
 			.dialog()
-			.getTitle()
+			.title()
 			.parse(this.serverName);
 
 		DialogBody dialogBody = this.createBody();
@@ -90,7 +90,7 @@ public class ServerDialog {
 	private DialogBody createBody() {
 		Component dialogBody = ConfigManager.messages()
 			.dialog()
-			.getBody()
+			.body()
 			.parse(this.serverName);
 
 		PlainMessage dialogBodyMessage = new PlainMessage(
@@ -186,7 +186,7 @@ public class ServerDialog {
 
 		Component onlineStatus = ConfigManager.messages()
 			.dialog()
-			.getOnline()
+			.online()
 			.parse(
 				pingInfo.getConnectedPlayers(),
 				pingInfo.getMaxPlayers()
@@ -197,7 +197,7 @@ public class ServerDialog {
 		if (isConnected) {
 			connectedTooltip = ConfigManager.messages()
 				.dialog()
-				.getConnectedTooltip()
+				.buttonConnected()
 				.parse(this.serverName);
 		}
 
@@ -224,12 +224,12 @@ public class ServerDialog {
 
 		Component offlineStatus = ConfigManager.messages()
 			.dialog()
-			.getOffline()
+			.offline()
 			.parse();
 
 		Component offlineTooltip = ConfigManager.messages()
 			.dialog()
-			.getOfflineTooltip()
+			.buttonOffline()
 			.parse(this.serverName);
 
 		Component buttonLabel = this.parseButtonLabel(pingName, offlineStatus, pingInfo.isSpecial());
@@ -249,13 +249,13 @@ public class ServerDialog {
 		if (isSpecial) {
 			special = ConfigManager.messages()
 				.dialog()
-				.getSpecial()
+				.special()
 				.parse();
 		}
 
 		return ConfigManager.messages()
 			.dialog()
-			.getButton()
+			.button()
 			.parse(pingName, offlineStatus, special);
 	}
 }
