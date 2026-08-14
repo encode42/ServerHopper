@@ -1,4 +1,4 @@
-package dev.encode42.serverhopper.commands.arguments;
+package dev.encode42.serverhopper.helpers;
 
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;

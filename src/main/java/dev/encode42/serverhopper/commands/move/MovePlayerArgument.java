@@ -7,7 +7,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import com.velocitypowered.api.command.CommandSource;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
-import dev.encode42.serverhopper.commands.arguments.SuggestionsHelper;
+import dev.encode42.serverhopper.helpers.SuggestionsHelper;
 
 import java.util.concurrent.CompletableFuture;
 
