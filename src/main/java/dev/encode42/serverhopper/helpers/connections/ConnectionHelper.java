@@ -4,6 +4,7 @@ import com.velocitypowered.api.proxy.ConnectionRequestBuilder;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+import dev.encode42.serverhopper.permissions.ServerPermission;
 
 import java.util.Optional;
 
@@ -14,6 +15,10 @@ public class ConnectionHelper {
 
 		if (sourceServer.equals(server)) {
 			return ConnectionStatus.ALREADY_CONNECTED;
+		}
+
+		if (!ServerPermission.hasDefaultPermission(player, server)) {
+			return ConnectionStatus.NO_PERMISSION;
 		}
 
 		ConnectionRequestBuilder connectionRequestBuilder = player.createConnectionRequest(server);

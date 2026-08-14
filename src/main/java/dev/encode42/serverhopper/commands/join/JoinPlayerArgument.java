@@ -6,6 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.ServerConnection;
 import dev.encode42.serverhopper.commands.ExecutableArgument;
 import dev.encode42.serverhopper.commands.arguments.PlayerArgument;
 import dev.encode42.serverhopper.data.ConfigManager;
@@ -35,13 +36,24 @@ public class JoinPlayerArgument extends ExecutableArgument<String> {
 
 		ConnectionStatus connectionStatus = ConnectionHelper.connect(executingPlayer, targetPlayer);
 
-		if (connectionStatus != ConnectionStatus.SUCCESS) {
-			throw ConfigManager.messages()
-				.connection()
-				.executorConnected()
-				.error();
+		if (connectionStatus == ConnectionStatus.SUCCESS) {
+			return Command.SINGLE_SUCCESS;
 		}
 
-		return Command.SINGLE_SUCCESS;
+		if (connectionStatus == ConnectionStatus.NO_PERMISSION) {
+			ServerConnection serverConnection = ConnectionHelper.getConnection(targetPlayer);
+
+			if (serverConnection != null) {
+				throw ConfigManager.messages()
+					.connection()
+					.invalidPermission()
+					.error(serverConnection.getServerInfo().getName());
+			}
+		}
+
+		throw ConfigManager.messages()
+			.connection()
+			.executorConnected()
+			.error();
 	}
 }
