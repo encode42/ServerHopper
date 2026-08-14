@@ -86,7 +86,7 @@ public class MoveServerArgument extends ExecutableArgument<String> {
 	private ConnectionStatus movePlayer(Player player, RegisteredServer server) {
 		String serverName = server.getServerInfo().getName();
 
-		ConnectionStatus connectionStatus = ConnectionHelper.connect(player, server);
+		ConnectionStatus connectionStatus = ConnectionHelper.connect(player, server, true);
 
 		if (connectionStatus == ConnectionStatus.SUCCESS) {
 			player.sendMessage(

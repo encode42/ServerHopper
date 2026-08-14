@@ -9,7 +9,7 @@ import dev.encode42.serverhopper.permissions.ServerPermission;
 import java.util.Optional;
 
 public class ConnectionHelper {
-	public static ConnectionStatus connect(Player player, RegisteredServer server) {
+	public static ConnectionStatus connect(Player player, RegisteredServer server, boolean force) {
 		ServerConnection sourceServerConnection = ConnectionHelper.getConnection(player);
 		RegisteredServer sourceServer = sourceServerConnection.getServer();
 
@@ -17,7 +17,7 @@ public class ConnectionHelper {
 			return ConnectionStatus.ALREADY_CONNECTED;
 		}
 
-		if (!ServerPermission.hasDefaultPermission(player, server)) {
+		if (!force && !ServerPermission.hasDefaultPermission(player, server)) {
 			return ConnectionStatus.NO_PERMISSION;
 		}
 
@@ -25,6 +25,10 @@ public class ConnectionHelper {
 		connectionRequestBuilder.connectWithIndication();
 
 		return ConnectionStatus.SUCCESS;
+	}
+
+	public static ConnectionStatus connect(Player player, RegisteredServer server) {
+		return ConnectionHelper.connect(player, server, false);
 	}
 
 	public static ConnectionStatus connect(Player sourcePlayer, Player destinationPlayer) {
