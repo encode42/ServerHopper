@@ -7,7 +7,7 @@ import dev.encode42.serverhopper.messages.Exception;
 import net.kyori.adventure.text.Component;
 
 public class ExecutorConnectedException extends Exception {
-	public static final String DEFAULT_VALUE = "<red>You are already connected to this server!";
+	public static final String DEFAULT_VALUE = "<red>You are already connected to their server!";
 
 	private final SimpleCommandExceptionType exception = new SimpleCommandExceptionType(
 		VelocityBrigadierMessage.tooltip(
